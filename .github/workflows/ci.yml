@@ -90,7 +90,7 @@ jobs:
         uses: ./.github/actions/tag-build-push-container
         with:
           registry: ghcr.io
-          image-name: ${{ github.repository_owner }}/${{github.repository}}-${{ github.job }}
+          image-name: ${{github.repository}}-${{ github.job }}
           containerfile-path: "containers/${{ github.job }}.Dockerfile"
           push-condition: ${{ github.event_name != 'pull_request' }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

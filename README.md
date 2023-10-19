@@ -75,7 +75,7 @@ You can bump the version with commands that contain a bump rule
 > The new version should ideally be a valid semver string or a valid bump rule:
 > patch, minor, major, prepatch, preminor, premajor, prerelease.
 
-such as `poetry version prepatch`. You can also simply edit the version in the[pyproject.toml](./pyproject.toml) file. After changing the version, when you push to github, the [CD](./.github/workflows/cd.yml) workflow will automatically publish it on Test-PyPI and a github release will be created as a draft.
+such as `poetry version prepatch`. You can also simply edit the version in the [pyproject.toml](./pyproject.toml) file. After changing the version, when you push to github, the [CD](./.github/workflows/cd.yml) workflow will automatically publish it on Test-PyPI and a github release will be created as a draft.
 
 ## License
 
