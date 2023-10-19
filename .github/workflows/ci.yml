@@ -17,10 +17,10 @@ on:
         default: false
   push:
     branches: ["main"]
-    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml"]
+    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml", "!poetry.lock"]
   pull_request:
     types: [opened, synchronize, ready_for_review]
-    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml"]
+    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml", "!poetry.lock"]
 
 defaults:
   run:
