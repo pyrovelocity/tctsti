@@ -1,0 +1,33 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: tctsti
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Anders
+    family-names: Rasmussen
+    affiliation: Broad Institute
+  - given-names: Cameron
+    family-names: Smith
+    affiliation: Harvard Medical School
+identifiers:
+  - type: url
+    value: 'https://github.com/pyrovelocity/tctsti'
+    description: source
+repository-code: 'https://github.com/pyrovelocity/tctsti'
+url: 'https://pyrovelocity.github.io/tctsti'
+abstract: >-
+  Library for benchmarking the impact of transcript count
+  type stratification on trajectory inference.
+keywords:
+  - probabilistic modeling
+  - stochastic differential equations
+  - RNA velocity
+license: AGPL-3.0-only
+commit: 5efe755819960d8969e33bce5867c241c121be46
+version: 0.1.0
+date-released: '2023-10-18'

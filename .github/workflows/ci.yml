@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_enabled:
+        description: "Run with tmate.io debugging enabled"
+        required: true
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      debug_enabled:
+        description: "Run with tmate.io debugging enabled"
+        required: true
+        type: boolean
+        default: false
+  push:
+    branches: ["main"]
+    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml"]
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+    paths-ignore: ["docs/**", "**.md", "*", "!pyproject.toml"]
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: CI-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+    
+jobs:
+
+  set-debug:
+    name: Set debug flag
+    runs-on: ubuntu-latest
+    outputs:
+      debug: ${{ steps.set-debug.outputs.debug }}
+    steps:
+    - id: set-debug
+      run: |
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" || "${{ github.event_name }}" == "workflow_call" ]]; then
+          echo "DEBUG=${{ github.event.inputs.debug_enabled }}" >> $GITHUB_ENV
+        else
+          echo "DEBUG=false" >> $GITHUB_ENV
+        fi
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: set-debug
+    strategy:
+      matrix:
+        python_version: ['3.10']
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup environment
+      uses: ./.github/actions/setup_environment
+      with:
+        python_version: ${{ matrix.python_version }}
+        debug_enabled: ${{ needs.set-debug.outputs.debug }}
+    - name: Lint and typecheck
+      run: |
+        just lint-check
+    - name: Run tests
+      run: |
+        just test-cov-xml
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        verbose: true
+    - name: "Setup tmate debug session"
+      uses: mxschmitt/action-tmate@v3
+      if: ${{ inputs.debug_enabled }}
+
+  dev:
+    name: Container dev
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag Build and Push dev Container
+        uses: ./.github/actions/tag-build-push-container
+        with:
+          registry: ghcr.io
+          image-name: ${{ github.repository_owner }}/${{github.repository}}-${{ github.job }}
+          containerfile-path: "containers/${{ github.job }}.Dockerfile"
+          push-condition: ${{ github.event_name != 'pull_request' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Setup tmate debug session"
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ inputs.debug_enabled }}

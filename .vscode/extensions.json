@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "donjayamanne.python-extension-pack",
+    "redhat.vscode-yaml",
+    "sclu1034.justfile",
+    "ms-vscode.makefile-tools",
+    "ms-python.black-formatter",
+    "googlecloudtools.cloudcode",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "ms-vsliveshare.vsli",
+    "eamodio.gitlens",
+    "GitHub.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "ms-azuretools.vscode-docker",
+    "ms-toolsai.jupyter",
+    "njzy.stats-bar",
+    "vscode-icons-team.vscode-icons",
+    "poimandres.theme-poimandres"
+  ]
+}

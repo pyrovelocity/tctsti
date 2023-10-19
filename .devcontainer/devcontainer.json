@@ -1,0 +1,13 @@
+{
+  "name": "tctsti-dev",
+  "build": {
+    "dockerfile": "../containers/dev.Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+      ]
+    }
+  }
+}

@@ -1,3 +1,6 @@
+# Untracked
+/untracked
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -121,6 +124,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.bak
 .venv
 env/
 venv/
