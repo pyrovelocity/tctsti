@@ -5505,13 +5505,13 @@ multidict = ">=4.0"
 
 [[package]]
 name = "zenml"
-version = "0.45.2"
+version = "0.45.4"
 description = "ZenML: Write production-ready ML code."
 optional = true
 python-versions = ">=3.8,<3.12"
 files = [
-    {file = "zenml-0.45.2-py3-none-any.whl", hash = "sha256:a0d31236c675066e3b24c463c953e8e40aebc05ba92295c83c920c98464dccb2"},
-    {file = "zenml-0.45.2.tar.gz", hash = "sha256:c22b0ce9c84e71a40947b54ba1989507d93b55bb41ea15b14c4373b72ed5e404"},
+    {file = "zenml-0.45.4-py3-none-any.whl", hash = "sha256:feacce8627efdc7882a5c662296c85b3e8633a3c225cf79080baead4c7063611"},
+    {file = "zenml-0.45.4.tar.gz", hash = "sha256:c3849948e9038625913f6f377f2ae5b6cc9d74d37a19e774804617ffbdd4fde3"},
 ]
 
 [package.dependencies]
@@ -5576,4 +5576,4 @@ pipelines = ["zenml"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "68e6c7b67bf17a8ef4b43fb7497a6366979a7d00c2c32b599c64213d622e7111"
+content-hash = "4e3e4ae3b8ef3859de34b3ab96ab47ae985be90da77697e8c8f768527b1d1367"
