@@ -45,7 +45,7 @@ jobs:
       matrix:
         python_version: ['3.10']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup environment
         uses: ./.github/actions/setup_environment
         with:
