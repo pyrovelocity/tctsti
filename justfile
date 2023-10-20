@@ -19,13 +19,6 @@ list:
 vars:
   @just --evaluate
 
-# test = "pytest -rA"
-# test-cov-xml = "pytest -rA --cov-report=xml"
-# lint = "bash -c 'black . && ruff --fix .'"
-# lint-check = "bash -c 'black --check . && ruff .'"
-# docs-serve = "mkdocs serve"
-# docs-build = "mkdocs build"
-
 # Run tests
 test:
   poetry run pytest -rA
@@ -51,3 +44,18 @@ docs-build:
 # Serve documentation
 docs-serve: docs-build
   poetry run mkdocs serve
+
+# e.g.: just remove-widgets "docs/notebooks/nsde_example.ipynb"
+# https://github.com/jupyter/nbconvert/issues/1731#issuecomment-1157006081
+# Remove widgets metadata from notebooks
+remove-widgets notebook_path:
+  jq -M 'del(.metadata.widgets)' {{notebook_path}} > {{notebook_path}}.tmp && mv {{notebook_path}}.tmp {{notebook_path}}
+
+# Sync jupyter notebooks with text formats
+nbsync:
+  poetry run jupytext --sync **/*.ipynb
+
+# Get the Co-authored-by string for a given GitHub username
+coauthored-by github_username:
+	@ID=$(curl -s https://api.github.com/users/{{github_username}} | jq '.id') && \
+	echo "Co-authored-by: {{github_username}} <$ID+{{github_username}}@users.noreply.github.com>"

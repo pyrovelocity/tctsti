@@ -47,6 +47,13 @@ plugins:
                     - https://docs.python.org/3.10/objects.inv
                 options:
                     docstring_style: google
+    - mkdocs-jupyter:
+        ignore_h1_titles: False
+        show_input: True
+        include: ["*.ipynb"]
+        # ignore: ["docs/notebooks/exclude.ipynb"]
+        execute: False
+        include_source: True
 
 watch:
     - docs
@@ -54,6 +61,8 @@ watch:
 
 nav:
     - About: index.md
-    - Specification: specification.md
+    - Examples:
+        - Neural SDE example: notebooks/nsde_example.ipynb
     - Reference:
         - tctsti: reference/tctsti.md
+    - Specification: specification.md

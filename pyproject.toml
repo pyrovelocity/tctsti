@@ -90,9 +90,13 @@ umap-learn = ">=0.5.4"
 
 # dev dependencies
 black = { version = ">=23.10.0", optional = true, extras = ["jupyter"] }
+jupytext = { version = ">=1.15.2", optional = true }
+jupyter_contrib_nbextensions = { version = ">=0.7.0", optional = true }
+mkdocs-jupyter = { version = ">=0.24.6", optional = true }
 mkdocs-material = { version = ">=9.4.6", optional = true }
 mkdocstrings = { version = ">=0.23.0", optional = true, extras = ["python"] }
 mypy = { version = ">=1.6.1", optional = true }
+notebook = { version = "==6.4.13", optional = true }
 pytest = { version = ">=7.4.2", optional = true }
 pytest-asyncio = { version = ">=0.21.1", optional = true }
 pytest-cov = { version = ">=4.1.0", optional = true }
@@ -100,14 +104,18 @@ ruff = { version = ">=0.1.0", optional = true }
 xdoctest = { version = ">=1.1.1", optional = true }
 
 # pipelines dependencies
-zenml = { version = "0.45.2", optional = true }
+zenml = { version = "==0.45.2", optional = true }
 
 [tool.poetry.extras]
 dev = [
   "black",
+  "jupytext",
+  "jupyter_contrib_nbextensions",
+  "mkdocs-jupyter",
   "mkdocs-material",
   "mkdocstrings",
   "mypy",
+  "notebook",
   "pytest",
   "pytest-asyncio",
   "pytest-cov",
@@ -155,6 +163,9 @@ omit = [
   "src/tctsti/__main__.py",
   "tests/conftest.py",
 ]
+
+[tool.jupytext]
+formats = "ipynb,text//py:percent,text//md"
 
 [tool.poetry]
 name = "tctsti"
